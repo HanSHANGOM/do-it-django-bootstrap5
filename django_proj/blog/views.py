@@ -1,8 +1,14 @@
-from pdb import post_mortem
 from django.shortcuts import render
+from django.views.generic import ListView
 from .models import Post
 # Create your views here.
-def index(request):
+
+class PostList(ListView):
+    model = Post
+    ordering= '-pk'
+
+
+"""def index(request):
     posts= Post.objects.all().order_by('-pk')
 
     return render(
@@ -11,7 +17,7 @@ def index(request):
         {
             'posts': posts,
         }
-    )
+    )"""
 
 def single_post_page(request,pk):
     post = Post.objects.get(pk=pk)
