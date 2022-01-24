@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'blog/css/blog-post.css' %}" rel="stylesheet" media="screen">
+    <script src="https://kit.fontawesome.com/42deadbeef.js" crossorigin="annonymous"></script>
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -52,9 +53,22 @@
                         <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                     </header>
                     <!-- Preview image figure-->
-                    <figure class="mb-4"><img class="img-fluid rounded" src="{{https://dummyimage.com/900x400/ced4da/6c757d.jpg}}" alt="..." /></figure>
+                    <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
                     <!-- Post content-->
                     <p>{{ post.content}}</p>
+
+                    {% if post.file_upload %}
+                        <a href="{{post.file_upload.url}}" class="btn btn-outline-dark" role="button" >Download:
+                        {% if post.get_file_ext == 'pdf' %}
+                        <i class="fas fa-file-csv"></i>
+                        {% else %}
+                        <i class="far fa-file"></i>
+                        {% endif %}
+                    {{post.get_file_name}}
+                    {% endif %}
+                    </a>
+                    
+                    
                 </article>
                 <!-- Comments section-->
                 <section class="mb-5">
